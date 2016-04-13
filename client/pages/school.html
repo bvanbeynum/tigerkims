@@ -1,0 +1,70 @@
+<style>
+.navContainer {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 40px;
+}
+.navItem {
+	padding: 3px 8px;
+	border: #C5C5C5 solid 1px;
+	color: rgb(128, 128, 128);
+	background-color: rgb(245, 245, 245);
+	font-weight: bold;
+	text-align: center;
+	display: inline-block;
+	margin: 0px 5px;
+}
+.schedule {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 40px;
+	font-size: .85em;
+}
+.scheduleTitle {
+	font-weight: bold;
+	font-size: 1.1em;
+	margin-bottom: 5px;
+}
+.schedule table {
+	border-collapse: collapse;
+	width: 900px;
+}
+.schedule th, td {
+	padding: 3px 10px;
+	border: solid 1px rgb(150,150,150);
+	font-size: .9em;
+	text-align: center;
+}
+.schedule td:nth-child(1) {
+	width: 180px;
+}
+</style>
+
+<div class="title">
+	<div class="content">{{schoolName}}</div>
+</div>
+
+<div class="navContainer">
+	<div class="navItem button" ng-repeat="button in buttons" ng-click="navigate(button.url)">{{button.name}}</div>
+</div>
+
+<div ng-repeat="category in scheduleGroups" class="schedule">
+	<div class="scheduleTitle">{{category.name}}</div>
+	
+	<table>
+	<tr ng-style="{'background-color': category.colors.header}">
+	<th>Belt Level</th>
+	<th>Monday</th>
+	<th>Tuesday</th>
+	<th>Wednesday</th>
+	<th>Thursday</th>
+	<th>Friday</th>
+	<th>Saturday</th>
+	</tr>
+	<tr ng-repeat="schedule in category.schedules">
+	<td ng-style="{'background-color': category.colors.firstColumn}">{{schedule.name}}</td>
+	<td ng-repeat="time in schedule.times track by $index" ng-style="dayOfWeek == $index ? {'background-color':category.colors.firstColumn; 'border-right':'solid 2px'; 'border-left':'solid 2px'} : {}">{{time}}</td>
+	</tr>
+	</table>
+</div>

@@ -1,0 +1,13 @@
+{
+	"name": "TigerKimsTKD",
+	"version": "0.0.1",
+	"description": "Tiger Kims Tae Kwon Do",
+	"main": "server.js",
+	"repository": "",
+	"author": "Brett van Beynum",
+	"dependencies": {
+		"express": "4.x",
+		"lwip": "0.0.8",
+		"mongodb": "2.1.x"
+	}
+}

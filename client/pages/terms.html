@@ -1,0 +1,166 @@
+<style>
+.navContainer {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 40px;
+}
+.navItem {
+	padding: 3px 8px;
+	border: #C5C5C5 solid 1px;
+	color: rgb(128, 128, 128);
+	background-color: rgb(245, 245, 245);
+	font-weight: bold;
+	text-align: center;
+	display: inline-block;
+	margin: 0px 5px;
+}
+.container {
+	display: flex;
+	justify-content: center;
+}
+.termsContainer {
+	width: 500px;
+}
+.categoryContainer {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 10px;
+}
+.categoryContainer .bar {
+	width: 20px;
+	background-color: rgb(0,0,0);
+	height: 2px;
+	margin: auto 5px;
+}
+.categoryContainer .text {
+	font-weight: bold;
+	font-size: 1.5em;
+}
+.action {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 10px;
+}
+.message {
+	display: flex;
+	justify-content: center;
+	font-size: .8em;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+.message.correct {
+	color: rgb(50, 210, 50);
+}
+.message.incorrect {
+	color: rgb(255,0,0);
+}
+.cardWrapper {
+	display: flex;
+	justify-content: center;
+}
+.cardContainer {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	margin: 20px 0px;
+}
+.card {
+	border: 1px solid rgb(0,0,0);
+	margin: 15px 80px;
+	width: 150px;
+	height: 75px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-size: .75em;
+	border-radius: 8px;
+	box-shadow: 0px 7px 16px rgba(0,0,0,.1);
+	color: white;
+	font-weight: bold;
+	text-align: center;
+}
+.card .english {
+	background-color: rgb(145,145,255);
+	flex-grow: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+}
+.card .korean {
+	background-color: rgb(255,145,145);
+	flex-grow: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+}
+.card .test {
+	border-radius: 6px;
+}
+</style>
+
+<div class="title">
+	<div class="content">{{beltName}} Belt Terms</div>
+</div>
+
+<div class="navContainer">
+	<div class="navItem button" ng-repeat="button in buttons" ng-click="navigate(button.url)">{{button.name}}</div>
+</div>
+
+<div class="container">
+	<div class="termsContainer">
+		<div ng-repeat="category in categories">
+			<div class="categoryContainer">
+				<div class="bar"></div>
+				<div class="text">{{category.category}}</div>
+				<div class="bar"></div>
+			</div>
+			
+			<div class="action">
+				<div class="button navItem" ng-click="testClick($index)">Test Me</div>
+			</div>
+			
+			<div class="message" ng-class="category.message == 'Correct' ? 'correct' : 'incorrect'">
+				{{category.message}}
+			</div>
+			
+			<div class="cardWrapper">
+				<div class="cardContainer">
+					<div class="card button" ng-repeat="word in category.words | orderBy: 'word.english'"
+						ondragover="angular.element(this).scope().dragOver(event)"
+						ondragleave="angular.element(this).scope().dragLeave(event)"
+						ondrop="angular.element(this).scope().drop(event)"
+						ng-click="cardClick($event, word)">
+						
+						<div class="english" ng-class="{test: word.isTest}">{{word.english}}</div>
+						<div class="korean" ng-show="!word.isTest">{{word.korean}}</div>
+						
+						<audio>
+							<source ng-src="{{word.audio}}" type="audio/ogg">
+						</audio>
+					</div>
+				</div>
+				
+				<div class="cardContainer">
+					<div class="card button" draggable="true" ng-repeat="word in category.testWords"
+						ondragstart="angular.element(this).scope().drag(event)"
+						ng-click="cardClick($event, word)">
+						
+						<div class="korean test">{{word.korean}}</div>
+						
+						<audio>
+							<source ng-src="{{word.audio}}" type="audio/ogg">
+						</audio>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>

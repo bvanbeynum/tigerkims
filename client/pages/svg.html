@@ -1,0 +1,49 @@
+<html ng-app="tigerApp">
+<head>
+<style>
+card .borderRect {
+	stroke: rgb(150,150,150);
+	fill: transparent;
+}
+card polygon, line {
+	stroke: rgb(117, 166, 199);
+	fill: rgb(255,255,255);
+	stroke-width: 2;
+}
+card text {
+	fill: rgb(117, 166, 199);
+	font-family: Verdana;
+	font-weight: bold;
+}
+card text.schoolName {
+	font-size: 19px;
+}
+card .startYear {
+	stroke: rgb(200,200,200);
+}
+card text.startYear {
+	font-weight: normal;
+	font-size: 19px;
+}
+</style>
+</head>
+<body ng-controller="svg">
+
+<card profile="data" scale=".9"></card>
+
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script type="text/javascript" src="/app.js"></script>
+<script type="text/javascript" src="/services.js"></script>
+<script type="text/javascript" src="/directives.js"></script>
+<script type="text/javascript" src="/controllers.js"></script>
+
+<script type="text/javascript">
+tigerApp.controller("svg", function ($scope) {
+	$scope.data = { name: "Brett van Beynum", category: "Men's Group", startDate: new Date(2014,11,14), belt: "Dbl Black Stripe" };
+});
+</script>
+
+</body>
+</html>

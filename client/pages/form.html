@@ -1,0 +1,109 @@
+<style>
+.navContainer {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 40px;
+}
+.navItem {
+	padding: 3px 8px;
+	border: #C5C5C5 solid 1px;
+	color: rgb(128, 128, 128);
+	background-color: rgb(245, 245, 245);
+	font-weight: bold;
+	text-align: center;
+	display: inline-block;
+	margin: 0px 5px;
+}
+.container {
+	display: flex;
+	justify-content: center;
+}
+.videoContainer {
+	margin-bottom: 150px;
+}
+.video {
+	box-shadow: 0px 10px 16px rgba(0,0,0,.1);
+	position: relative;
+}
+.videoStatus {
+	position: absolute;
+	z-index: 2;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	align-items: center;
+}
+.videoStatus img {
+	display: none;
+	opacity: .5;
+}
+.videoStatus img.active {
+	display: inline;
+}
+.form {
+	display: flex;
+	box-shadow: 0px 10px 16px rgba(0,0,0,.1);
+	justify-content: center;
+	height: 330px;
+	align-items: center;
+}
+form-layout {
+	margin: 0px 20px;
+}
+form-layout line {
+	stroke: black;
+	stroke-width: 8px;
+	stroke-linecap: square;
+	cursor: pointer;
+}
+form-layout .active {
+	stroke: red;
+}
+.card {
+	margin: 0px 20px;
+}
+.card .step {
+	font-weight: bold;
+}
+.card ul {
+	padding: 0px 10px;
+	margin: 0px;
+}
+.card li {
+	list-style: none;
+}
+</style>
+
+<div class="title">
+	<div class="content">{{beltName}} Belt Form</div>
+</div>
+
+<div class="navContainer">
+	<div class="navItem button" ng-repeat="button in buttons" ng-click="navigate(button.url)">{{button.name}}</div>
+</div>
+
+<div class="container">
+	<div class="videoContainer">
+		<div class="video">
+			<video id="player" width="590" height="330"
+				onloadeddata="angular.element(this).scope().isLoaded(event)"
+				oncanplay="angular.element(this).scope().canPlay()">
+				<source ng-src="{{videoSrc}}" type="video/mp4" />
+			</video>
+		</div>
+		
+		<div class="form">
+			<form-layout segments="stepSegments" current="cards[currentIndex].segment" line-click="selectSegment(segmentIndex)"></form-layout>
+			
+			<div class="card" ng-repeat="card in cards" ng-show="currentIndex == $index">
+				<img ng-src="/{{beltIndex}}/form/{{$index}}.png" />
+				
+				<div class="step" ng-show="card.number">Step {{card.number}}</div>
+				<ul>
+				<li ng-repeat="instruction in card.text">{{instruction}}</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

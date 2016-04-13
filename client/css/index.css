@@ -1,0 +1,110 @@
+html {
+	font-family: Verdana;
+}
+body {
+	margin: 0px;
+}
+
+.button {
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.button.full {
+	padding: 3px 10px;
+	border: #C5C5C5 solid 1px;
+	color: rgb(128, 128, 128);
+	background-color: rgb(245, 245, 245);
+	font-weight: bold;
+	font-size: 1.3em;
+}
+
+.header {
+	display: flex;
+	flex-direction: row;
+	margin-top: 10px;
+}
+.header .barContainer {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+}
+.header .bar {
+	flex-grow: 1;
+}
+.header .bar hr {
+	border-color: black;
+	height: 2px;
+	background-color: black;
+}
+.header .barContainer:nth-child(3) .bar:nth-child(2) {
+	margin-left: 20px;
+}
+
+.header .barContainer:nth-child(1) .bar:nth-child(2) {
+	margin-right: 20px;
+}
+
+.navigation {
+	display: flex;
+	justify-content: center;
+	margin: 0px 0px 20px 0px;
+}
+.navigation .item {
+	margin: 0px 80px;
+}
+
+.title {
+	margin: 50px 0px 20px 0px;
+	display: flex;
+	justify-content: center;
+}
+.title .bar {
+	width: 50px;
+	height: 8px;
+	margin: auto 5px;
+	box-sizing: border-box;
+	border: 1px solid rgb(0,0,0);
+}
+.title .content {
+	font-weight: bold;
+	font-size: 2.8em;
+}
+
+.tileContainer {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+.tile {
+	position: relative;
+	display: flex;
+	width: 200px;
+	height: 200px;
+	border: rgb(200,200,200) solid 1px;
+	box-sizing: border-box;
+	margin: 20px;
+	box-shadow: 0px 10px 16px rgba(0,0,0,.1);
+}
+.tile img {
+	margin: auto;
+}
+.tile .background {
+	position: absolute;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	opacity: .5;
+}
+.tile .text {
+	position: absolute;
+	z-index: 2;
+	margin: 40% auto;
+	font-weight: bold;
+	font-size: 1.8em;
+	color: black;
+	width: 100%;
+	text-align: center;
+}

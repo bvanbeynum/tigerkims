@@ -1,0 +1,51 @@
+<style>
+.navContainer {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 40px;
+}
+.navItem {
+	padding: 3px 8px;
+	border: #C5C5C5 solid 1px;
+	color: rgb(128, 128, 128);
+	background-color: rgb(245, 245, 245);
+	font-weight: bold;
+	text-align: center;
+	display: inline-block;
+	margin: 0px 5px;
+}
+.beltInfoContainer {
+	display: flex;
+	justify-content: center;
+}
+.content h2:nth-child(1) {
+	margin-top: 0px;
+}
+</style>
+
+<div class="title">
+	<div class="bar" ng-style="{'background-color': leftBar}"></div>
+	<div class="content">{{beltName}}</div>
+	<div class="bar" ng-style="{'background-color': rightBar}"></div>
+</div>
+
+<div class="navContainer">
+	<div class="navItem button" ng-repeat="button in buttons" ng-click="navigate(button.url)">{{button.name}}</div>
+</div>
+
+<div class="beltInfoContainer">
+	<div class="beltInfo">
+		<h2>Black Belt Philosophy</h2>
+		<p>{{philosophy}}</p>
+		
+		<h2>Belt Tip Requirements</h2>
+		<ol>
+			<li ng-repeat="requirement in tip">{{requirement.color}} - {{requirement.requirement}}</li>
+		</ol>
+		
+		<h2>Testing Requirements</h2>
+		<ul>
+			<li ng-repeat="requirement in testing">{{requirement}}</li>
+		</ul>
+	</div>
+</div>
