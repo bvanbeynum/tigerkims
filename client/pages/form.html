@@ -1,52 +1,27 @@
 <style>
-.navContainer {
-	display: flex;
-	justify-content: center;
-	margin-bottom: 40px;
-}
-.navItem {
-	padding: 3px 8px;
-	border: #C5C5C5 solid 1px;
-	color: rgb(128, 128, 128);
-	background-color: rgb(245, 245, 245);
-	font-weight: bold;
-	text-align: center;
-	display: inline-block;
-	margin: 0px 5px;
-}
-.container {
-	display: flex;
-	justify-content: center;
-}
 .videoContainer {
 	margin-bottom: 150px;
+	display: flex;
+	flex-flow: column wrap;
+	align-items: center;
 }
 .video {
 	box-shadow: 0px 10px 16px rgba(0,0,0,.1);
 	position: relative;
+	margin: 0px 10px;
+	width: 300px;
+	background-color: rgb(0,0,0);
 }
-.videoStatus {
-	position: absolute;
-	z-index: 2;
-	display: flex;
-	justify-content: center;
-	width: 100%;
-	height: 100%;
-	align-items: center;
-}
-.videoStatus img {
-	display: none;
-	opacity: .5;
-}
-.videoStatus img.active {
-	display: inline;
+video {
+	width: 300px;
 }
 .form {
 	display: flex;
 	box-shadow: 0px 10px 16px rgba(0,0,0,.1);
 	justify-content: center;
-	height: 330px;
 	align-items: center;
+	flex-flow: row wrap;
+	width: 300px;
 }
 form-layout {
 	margin: 0px 20px;
@@ -73,20 +48,35 @@ form-layout .active {
 .card li {
 	list-style: none;
 }
+
+@media (min-width: 600px) {
+	.video {
+		width: 590px;
+	}
+	video {
+		width: 590px;
+	}
+	.form {
+		width: 590px;
+	}
+}
 </style>
 
-<div class="title">
-	<div class="content">{{beltName}} Belt Form</div>
+<div class="pageTitle">
+	<div class="titleBar" ng-style="{'background-color': leftBar}"></div>
+	<div class="titleText">{{beltName}} Form</div>
+	<div class="titleBar" ng-style="{'background-color': rightBar}"></div>
 </div>
 
 <div class="navContainer">
-	<div class="navItem button" ng-repeat="button in buttons" ng-click="navigate(button.url)">{{button.name}}</div>
+	<div class="navMenu navItem button" ng-click="formNavShow = !formNavShow">School Menu</div>
+	<div class="navItem button" ng-class="{active: formNavShow}" ng-repeat="button in buttons" ng-click="navigate(button.url)">{{button.name}}</div>
 </div>
 
-<div class="container">
+<div class="contentContainer">
 	<div class="videoContainer">
 		<div class="video">
-			<video id="player" width="590" height="330"
+			<video id="player"
 				onloadeddata="angular.element(this).scope().isLoaded(event)"
 				oncanplay="angular.element(this).scope().canPlay()">
 				<source ng-src="{{videoSrc}}" type="video/mp4" />

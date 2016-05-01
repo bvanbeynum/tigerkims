@@ -1,19 +1,4 @@
 <style>
-.navContainer {
-	display: flex;
-	justify-content: center;
-	margin-bottom: 40px;
-}
-.navItem {
-	padding: 3px 8px;
-	border: #C5C5C5 solid 1px;
-	color: rgb(128, 128, 128);
-	background-color: rgb(245, 245, 245);
-	font-weight: bold;
-	text-align: center;
-	display: inline-block;
-	margin: 0px 5px;
-}
 .tile .beltColor {
 	width: 100%;
 	margin: auto;
@@ -40,19 +25,22 @@
 }
 </style>
 
-<div class="title">
-	<div class="content">Select Belt</div>
+<div class="pageTitle">
+	<div class="titleText">Select Belt</div>
 </div>
 
 <div class="navContainer">
-	<div class="navItem button" ng-repeat="button in buttons" ng-click="navigate(button.url)">{{button.name}}</div>
+	<div class="navMenu navItem button" ng-click="formNavShow = !formNavShow">School Menu</div>
+	<div class="navItem button" ng-class="{active: formNavShow}" ng-repeat="button in buttons" ng-click="navigate(button.url)">{{button.name}}</div>
 </div>
 
-<div class="tileContainer">
-	<div class="tile button" ng-click="beltClick($index)" ng-repeat="belt in belts">
-		<div class="beltColor" ng-style="{'background-color': belt.color}" ng-class="belt.stripeColor ? 'stripePadding' : ''">
-			<div class="stripeColor" ng-class="{double: belt.doubleColor}" ng-show="belt.stripeColor" ng-style="{'background-color': belt.stripeColor}"></div>
-			<div class="doubleColor" ng-show="belt.doubleColor" ng-style="{'background-color': belt.doubleColor}"></div>
+<div class="contentContainer">
+	<div class="tileContainer">
+		<div class="tile button" ng-click="beltClick($index)" ng-repeat="belt in belts">
+			<div class="beltColor" ng-style="{'background-color': belt.color}" ng-class="belt.stripeColor ? 'stripePadding' : ''">
+				<div class="stripeColor" ng-class="{double: belt.doubleColor}" ng-show="belt.stripeColor" ng-style="{'background-color': belt.stripeColor}"></div>
+				<div class="doubleColor" ng-show="belt.doubleColor" ng-style="{'background-color': belt.doubleColor}"></div>
+			</div>
 		</div>
 	</div>
 </div>

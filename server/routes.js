@@ -1,5 +1,4 @@
 var path = require("path");
-var lwip = require("lwip");
 
 module.exports = function (app) {
 	
@@ -11,51 +10,42 @@ module.exports = function (app) {
 	
 	// Static Content =================================================================
 	
-	app.get("/*.html", function(request, response) {
-		var file = request.path.substring(request.path.indexOf("/") + 1);
-		response.sendFile(file, { root: path.join(__dirname, "../client/pages") });
-	});
-	
-	app.get("/*.css", function (request, response) {
-		var file = request.path.substring(request.path.indexOf("/") + 1);
-		response.sendFile(file, { root: path.join(__dirname, "../client/css") });
-	});
-	
-	app.get("/*.js", function (request, response) {
-		var file = request.path.substring(request.path.indexOf("/") + 1);
-		response.sendFile(file, { root: path.join(__dirname, "../client/js/") });
-	});
-	
 	app.get("/robots.txt", function (request, response) {
-		response.send("User-agent: *\r\n" +
-			"Disallow: /");
+		response.send(
+			"User-agent: *\r\n" +
+			"Disallow: /"
+		);
 	});
 	
 	app.get("/*.*", function (request, response) {
-		var file = request.path.substring(request.path.indexOf("/") + 1);
-			
-		if (request.query.r) {
-			lwip.open(path.join(__dirname, "../client/media/" + file), function (error, image) {
-				var width = image.width(), 
-					height = image.height(),
-					batch = image.batch();
-					
-				if (width > height) {
-					batch.resize(request.query.r);
-				}
-				else {
-					batch.resize((request.query.r * width) / height);
-				}
-				
-				batch.toBuffer("png", function (error, buffer) {
-					response.setHeader("content-type", "image/jpeg");
-					response.send(buffer);
-				});
-			});
+		var filePath,
+			file = request.path.substring(request.path.indexOf("/") + 1),
+			extension = request.path.substring(request.path.lastIndexOf("."), request.path.length);
+		
+		if (request.path.toLowerCase().indexOf("/masterkim") == 0) {
+			file = file.replace("masterkim/", "");
+			filePath = "../masterkim";
 		}
 		else {
-			response.sendFile(file, { root: path.join(__dirname, "../client/media/") });
+			switch (extension) {
+			case ".html":
+				filePath = "../client/pages";
+				break;
+			
+			case ".css":
+				filePath = "../client/css";
+				break;
+			
+			case ".js":
+				filePath = "../client/js";
+				break;
+			
+			default:
+				filePath = "../client/media";
+			}
 		}
+		
+		response.sendFile(file, { root: path.join(__dirname, filePath) });
 	});
 
 };

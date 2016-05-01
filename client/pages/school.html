@@ -1,19 +1,4 @@
 <style>
-.navContainer {
-	display: flex;
-	justify-content: center;
-	margin-bottom: 40px;
-}
-.navItem {
-	padding: 3px 8px;
-	border: #C5C5C5 solid 1px;
-	color: rgb(128, 128, 128);
-	background-color: rgb(245, 245, 245);
-	font-weight: bold;
-	text-align: center;
-	display: inline-block;
-	margin: 0px 5px;
-}
 .schedule {
 	display: flex;
 	flex-direction: column;
@@ -41,30 +26,33 @@
 }
 </style>
 
-<div class="title">
-	<div class="content">{{schoolName}}</div>
+<div class="pageTitle">
+	<div class="titleText">{{schoolName}}</div>
 </div>
 
 <div class="navContainer">
-	<div class="navItem button" ng-repeat="button in buttons" ng-click="navigate(button.url)">{{button.name}}</div>
+	<div class="navMenu navItem button" ng-click="formNavShow = !formNavShow">School Menu</div>
+	<div class="navItem button" ng-class="{active: formNavShow}" ng-repeat="button in buttons" ng-click="navigate(button.url)">{{button.name}}</div>
 </div>
 
-<div ng-repeat="category in scheduleGroups" class="schedule">
-	<div class="scheduleTitle">{{category.name}}</div>
-	
-	<table>
-	<tr ng-style="{'background-color': category.colors.header}">
-	<th>Belt Level</th>
-	<th>Monday</th>
-	<th>Tuesday</th>
-	<th>Wednesday</th>
-	<th>Thursday</th>
-	<th>Friday</th>
-	<th>Saturday</th>
-	</tr>
-	<tr ng-repeat="schedule in category.schedules">
-	<td ng-style="{'background-color': category.colors.firstColumn}">{{schedule.name}}</td>
-	<td ng-repeat="time in schedule.times track by $index" ng-style="dayOfWeek == $index ? {'background-color':category.colors.firstColumn; 'border-right':'solid 2px'; 'border-left':'solid 2px'} : {}">{{time}}</td>
-	</tr>
-	</table>
+<div class="contentContainer">
+	<div ng-repeat="category in scheduleGroups" class="schedule">
+		<div class="scheduleTitle">{{category.name}}</div>
+		
+		<table>
+		<tr ng-style="{'background-color': category.colors.header}">
+		<th>Belt Level</th>
+		<th>Monday</th>
+		<th>Tuesday</th>
+		<th>Wednesday</th>
+		<th>Thursday</th>
+		<th>Friday</th>
+		<th>Saturday</th>
+		</tr>
+		<tr ng-repeat="schedule in category.schedules">
+		<td ng-style="{'background-color': category.colors.firstColumn}">{{schedule.name}}</td>
+		<td ng-repeat="time in schedule.times track by $index" ng-style="dayOfWeek == $index ? {'background-color':category.colors.firstColumn; 'border-right':'solid 2px'; 'border-left':'solid 2px'} : {}">{{time}}</td>
+		</tr>
+		</table>
+	</div>
 </div>

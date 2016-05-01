@@ -232,6 +232,10 @@ tigerApp.controller("formCtl", ["$scope", "$location", "$routeParams", "$window"
 		video;
 	
 	$scope.beltName = belt.name;
+	$scope.leftBar = belt.color;
+	$scope.rightBar = (belt.stripeColor) ? belt.stripeColor : belt.color;
+	
+	$scope.beltName = belt.name;
 	$scope.beltIndex = $routeParams.index;
 	$scope.videoSrc = "/" + $scope.beltIndex + "/form.mp4#t=" + d3.min(belt.form.steps, function (step) { return step.time; }) + "," + (d3.max(belt.form.steps, function (step) { return step.time; }) + 1);
 	$scope.stepSegments = belt.form.segments;
@@ -318,6 +322,8 @@ tigerApp.controller("termsCtl", function ($scope, $location, $routeParams, tiger
 	$scope.beltIndex = $routeParams.index;
 	$scope.beltName = belt.name;
 	$scope.categories = belt.terms;
+	$scope.leftBar = belt.color;
+	$scope.rightBar = (belt.stripeColor) ? belt.stripeColor : belt.color;
 	
 	$scope.testClick = function (categoryIndex) {
 		var category = $scope.categories[categoryIndex];
