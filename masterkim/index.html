@@ -51,7 +51,7 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
 	<div class="vidContainer">
-		<video loop="loop" autoplay="autoplay">
+		<video loop="loop" autoplay="autoplay" autobuffer poster="/masterkim/videobackground.jpg">
 			<source src="/masterkim/tkd.mp4" type="video/mp4" />
 		</video>
 	</div>
@@ -171,5 +171,11 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+document.getElementsByTagName("video")[0].addEventListener("touchend",function(){
+	document.getElementsByTagName("video")[0].play();
+},false);
+</script>
 </body>
 </html>
