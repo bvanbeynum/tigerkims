@@ -8,8 +8,5 @@
 	"dependencies": {
 		"express": "4.x",
 		"mongodb": "2.1.x"
-	},
-	"devDependencies": {
-		"flightplan": "^0.6.13"
 	}
 }

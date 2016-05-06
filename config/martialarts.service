@@ -1,0 +1,12 @@
+[Service]
+ExecStart=/usr/bin/node /home/deploy/sites/martialarts/server.js
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=tigerkims
+User=deploy
+Group=deploy
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target

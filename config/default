@@ -1,0 +1,27 @@
+upstream martialarts {
+  server 127.0.0.1:7575;
+}
+
+upstream masterkim {
+  server 127.0.0.1:7576;
+}
+
+server {
+  listen 80;
+  server_name tkd.beynum.com;
+
+  location / {
+    proxy_pass http://martialarts;
+    proxy_set_header Host $host;
+  }
+}
+
+server {
+  listen 80;
+  server_name masterkim.beynum.com;
+  
+  location / {
+    proxy_pass http://masterkim;
+    proxy_set_header Host $host;
+  }
+}

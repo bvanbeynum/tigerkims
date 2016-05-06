@@ -1,6 +1,8 @@
 var tigerApp = angular.module("tigerApp", ["ngRoute"]);
 
-tigerApp.config(["$routeProvider", "$locationProvider", function ($routeProvider, $locationProvider) {
+tigerApp.config(["$routeProvider", "$compileProvider", function ($routeProvider, $compileProvider) {
+	$compileProvider.debugInfoEnabled(false);
+	
 	$routeProvider
 		.when("/profile", {
 			templateUrl: "/profile.html",
