@@ -17,6 +17,7 @@ node_modules
 
 # Data Directories
 data
+mongod
 
 # Temp directory
 tmp

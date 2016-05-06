@@ -1,0 +1,97 @@
+<!doctype>
+<html>
+<head>
+<title>Test</title>
+<style type="text/css">
+.properties {
+	display: inline-block;
+	vertical-align: top;
+}
+
+#player {
+	display: inline-block;
+	vertical-align: top;
+	margin-bottom: 20px;
+}
+</style>
+</head>
+<body>
+
+<video id="player" width="590" height="330" controls>
+	<source src="/0/form.mp4#t=15,20" type="video/mp4" />
+</video>
+
+<div class="properties">
+	<h2>Properties</h2>
+	
+	<ul>
+	<li>Auto Play: <span id="autoPlay"></span></li>
+	<li>Buffered Objects: <span id="buffered"></span></li>
+	<li>Source: <span id="source"></span></li>
+	<li>Time: <span id="time"></span></li>
+	<li>Muted: <span id="muted"></span></li>
+	<li>Duration: <span id="duration"></span></li>
+	<li>Network: <span id="network"></span></li>
+	<li>Preload: <span id="preload"></span></li>
+	<li>Ready State: <span id="readyState"></span></li>
+	</ul>
+</div>
+
+<div class="buttons">
+	<button onclick="updateVideo()">Play/Pause</button>
+</div>
+
+<script>
+
+var video = document.getElementById("player");
+var autoPlay = document.getElementById("autoPlay");
+var buffered = document.getElementById("buffered");
+var source = document.getElementById("source");
+var time = document.getElementById("time");
+var muted = document.getElementById("muted");
+var duration = document.getElementById("duration");
+var network = document.getElementById("network");
+var preload = document.getElementById("preload");
+var readyState = document.getElementById("readyState");
+
+function updateVideo() {
+	if (video.paused) {
+		video.play();
+	}
+	else {
+		video.pause();
+	}
+	updateStatus();
+}
+
+function updateStatus() {
+	autoPlay.innerHTML = video.autoplay;
+	buffered.innerHTML = video.buffered.length;
+	source.innerHTML = video.currentSrc;
+	time.innerHTML = video.currentTime;
+	muted.innerHTML = video.defaultMuted;
+	duration.innerHTML = video.duration;
+	network.innerHTML = video.networkState;
+	preload.innerHTML = video.preload;
+	readyState.innerHTML = video.readyState;
+}
+
+updateStatus();
+setInterval(updateStatus, 3000);
+
+video.oncanplay = function () {
+	console.log("can play");
+};
+video.oncanplaythrough = function () {
+	console.log("can play through");
+};
+video.onloadeddata = function () {
+	console.log("laoded data");
+};
+video.onprogress = function (event) {
+};
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<style>
+.container {
+	display: flex;
+	justify-content: center;
+	margin-top: 50px;
+}
+.profileContainer {
+	display: flex;
+	flex-direction: column;
+	margin-right: 80px;
+}
+.profileContainer .pic {
+	background: url("/misc/dotext.png") no-repeat right bottom rgb(241, 241, 241);
+	width: 220px;
+	height: 200px;
+	border: 1px solid #C5C5C5;
+	padding: 20px;
+	box-sizing: border-box;
+	text-align: center;
+}
+.pic img {
+	width: auto;
+	height: 100%;
+}
+.profileNav {
+	padding: 8px 0px;
+	border-right: #C5C5C5 solid 1px;
+	color: rgb(128, 128, 128);
+	background-color: rgb(245, 245, 245);
+	font-weight: bold;
+	font-size: 1.3em;
+	border-left: #C5C5C5 solid 1px;
+	border-bottom: #C5C5C5 solid 1px;
+	text-align: center;
+}
+.contentColumn {
+	width: 800px;
+}
+</style>
+
+<div class="container">
+	<div class="profileColumn">
+		<div class="profileContainer">
+			<div class="pic">
+				<img src="/misc/profile1.png" />
+			</div>
+			
+			<div class="profileNav button" ng-click="navigate('/profile')">Profile</div>
+			<div class="profileNav button" ng-click="navigate('/friends')">Friends</div>
+			<div class="profileNav button">Settings</div>
+		</div>
+	</div>
+	
+	<div class="contentColumn">
+		<timeline belts="friend.belts" start-date="friend.startDate" end-date="friend.endDate" last-belt-date="friend.lastBeltDate"></timeline>
+		<timeline belts="my.belts" start-date="my.startDate" end-date="my.endDate" last-belt-date="my.lastBeltDate"></timeline>
+	</div>
+</<div>

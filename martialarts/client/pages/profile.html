@@ -1,0 +1,260 @@
+<style type="text/css">
+.container {
+	display: flex;
+	justify-content: center;
+	margin-top: 50px;
+}
+.profileContainer {
+	display: flex;
+	flex-direction: column;
+	margin-right: 80px;
+}
+.profileContainer .pic {
+	background: url("/misc/dotext.png") no-repeat right bottom rgb(241, 241, 241);
+	width: 220px;
+	height: 200px;
+	border: 1px solid #C5C5C5;
+	padding: 20px;
+	box-sizing: border-box;
+	text-align: center;
+}
+.pic img {
+	width: auto;
+	height: 100%;
+}
+.profileNav {
+	padding: 8px 0px;
+	border-right: #C5C5C5 solid 1px;
+	color: rgb(128, 128, 128);
+	background-color: rgb(245, 245, 245);
+	font-weight: bold;
+	font-size: 1.3em;
+	border-left: #C5C5C5 solid 1px;
+	border-bottom: #C5C5C5 solid 1px;
+	text-align: center;
+}
+.dashboard {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.statsContainer {
+	display: flex;
+	align-items: center;
+}
+.statsContainer .subTitle {
+	text-align: center;
+	font-weight: bold;
+	font-size: .9em;
+	margin-bottom: 15px;
+}
+.separator {
+	background-color: rgb(243, 242, 242);
+}
+.separator.height {
+	width: 3px;
+	height: 200px;
+	margin: 0px 40px;
+}
+.separator.width {
+	height: 3px;
+	width: 90%;
+	margin: 40px 0px;
+}
+.badgeContainer {
+	width: 400px;
+}
+.badges {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	height: 276px;
+	overflow-y: auto;
+}
+.badge {
+	width: 64px;
+	height: 64px;
+	margin: 10px;
+}
+.LeaderboardContainer {
+	width: 400px;
+}
+.rankTable table {
+	width: 100%;
+}
+.leaderContainer {
+	display: flex;
+	justify-content: space-around;
+	align-items: baseline;
+	margin-bottom: 10px;
+}
+.leader {
+	border: 1px solid rgb(150,150,150);
+	border-radius: 50px;
+}
+.leader.first {
+	width: 64px;
+	height: 64px;
+	background-color: rgb(239, 204, 17);
+}
+.leader.first img {
+	width: 64px;
+	height: 64px;
+}
+.leader.second {
+	width: 48px;
+	height: 48px;
+	background-color: rgb(218, 210, 210);
+}
+.leader.second img {
+	width: 48px;
+	height: 48px;
+}
+.leader.third {
+	width: 48px;
+	height: 48px;
+	background-color: rgb(228, 185, 117);
+}
+.leader.third img {
+	width: 48px;
+	height: 48px;
+}
+.rankTable {
+	height: 200px;
+	overflow-y: auto;
+}
+.rankTable td {
+	color: rgb(138, 138, 138);
+	font-size: .8em;
+}
+.rankTable td:nth-child(3) {
+	text-align: right;
+	padding-right: 10px;
+}
+timeline {
+	height: 100%;
+	width: 880px;
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+
+timeline .start {
+	fill: rgb(65, 170, 199);
+}
+timeline .end {
+	stroke-width: 8px;
+	stroke: rgb(185, 185, 185);
+}
+timeline .beltGroup line {
+	stroke: rgb(173, 173, 173);
+	stroke-width: 3px;
+}
+timeline .receivedText {
+	font-size: .75em;
+	font-style: Italic;
+}
+timeline .beltName {
+	font-weight: bold;
+	font-size: 1.5em;
+}
+timeline .tip {
+	stroke: rgb(158, 158, 158);
+}
+timeline .finish text {
+	text-orientation: upright;
+	font-weight: bold;
+}
+</style>
+
+<div class="container">
+	<div class="profileColumn">
+		<div class="profileContainer">
+			<div class="pic">
+				<img src="/misc/profile1.png" />
+			</div>
+			
+			<div class="profileNav button">Profile</div>
+			<div class="profileNav button" ng-click="navigate('/friends')">Friends</div>
+			<div class="profileNav button">Settings</div>
+		</div>
+	</div>
+	
+	<div class="dashboard">
+		<div class="statsContainer">
+			<div class="badgeContainer">
+				<div class="subTitle">Badges</div>
+				
+				<div class="badges" onscroll="angular.element(this).scope().badgeScroll()">
+					<img src="/badges/1year.png" class="badge" />
+					<img src="/badges/consistency.png" class="badge" />
+					<img src="/badges/5days.png" class="badge" />
+					<img src="/badges/friend.png" class="badge" />
+					<img src="/badges/consistency.png" class="badge" />
+					<img src="/badges/friend.png" class="badge" />
+					<img src="/badges/1year.png" class="badge" />
+					<img src="/badges/5days.png" class="badge" />
+					<img src="/badges/1year.png" class="badge" />
+					<img src="/badges/consistency.png" class="badge" />
+					<img src="/badges/5days.png" class="badge" />
+					<img src="/badges/friend.png" class="badge" />
+					<img src="/badges/consistency.png" class="badge" />
+					<img src="/badges/5days.png" class="badge" />
+				</div>
+			</div>
+			
+			<div class="separator height"></div>
+			
+			<div class="LeaderboardContainer">
+				<div class="subTitle">Leaderboard</div>
+				
+				<div class="leaderContainer">
+					<div class="leader second"><img src="/misc/profile3.png" /></div>
+					<div class="leader first"><img src="/misc/profile2.png" /></div>
+					<div class="leader third"><img src="/misc/profile4.png" /></div>
+				</div>
+				
+				<div class="rankTable">
+					<table>
+					<tr><td>1</td><td>Jim Smith</td><td>425,149</td></tr>
+					<tr><td>2</td><td>Sue Weaver</td><td>425,149</td></tr>
+					<tr><td>3</td><td>Emily Sans</td><td>425,149</td></tr>
+					<tr><td>4</td><td>Tabitha Stark</td><td>425,149</td></tr>
+					<tr><td>5</td><td>Craig Kimberley</td><td>425,149</td></tr>
+					<tr><td>6</td><td>Jerrie Sydney</td><td>425,149</td></tr>
+					<tr><td>7</td><td>Jared Frye</td><td>425,149</td></tr>
+					<tr><td>8</td><td>Harris Corra</td><td>425,149</td></tr>
+					<tr><td>9</td><td>Brannon Stack</td><td>425,149</td></tr>
+					<tr><td>10</td><td>Royce Zeller</td><td>425,149</td></tr>
+					<tr><td>11</td><td>Percy Keiser</td><td>425,149</td></tr>
+					<tr><td>12</td><td>Iesha Defilippo</td><td>425,149</td></tr>
+					<tr><td>13</td><td>Gena Vanhoy</td><td>425,149</td></tr>
+					<tr><td>14</td><td>Woodrow Buff</td><td>425,149</td></tr>
+					<tr><td>15</td><td>Inga Mcroberts</td><td>425,149</td></tr>
+					<tr><td>16</td><td>Versie Bunnell</td><td>425,149</td></tr>
+					<tr><td>17</td><td>Kathrin Headen</td><td>425,149</td></tr>
+					<tr><td>18</td><td>Wanetta Bechtol</td><td>425,149</td></tr>
+					<tr><td>19</td><td>Christine Madson</td><td>425,149</td></tr>
+					<tr><td>20</td><td>Diedra Leach</td><td>425,149</td></tr>
+					<tr><td>21</td><td>Bethanie Garriott</td><td>425,149</td></tr>
+					<tr><td>22</td><td>Peter Olmo</td><td>425,149</td></tr>
+					<tr><td>23</td><td>Tonya Weil</td><td>425,149</td></tr>
+					<tr><td>24</td><td>Wesley Benzing</td><td>425,149</td></tr>
+					<tr><td>25</td><td>Dinorah Stalls</td><td>425,149</td></tr>
+					<tr><td>26</td><td>Rachell Mccaleb</td><td>425,149</td></tr>
+					<tr><td>27</td><td>Alfonzo Stamm</td><td>425,149</td></tr>
+					<tr><td>28</td><td>Esther Zeck</td><td>425,149</td></tr>
+					<tr><td>29</td><td>Jaclyn Castiglione</td><td>425,149</td></tr>
+					<tr><td>30</td><td>Michael Hoover</td><td>425,149</td></tr>
+					<tr><td>31</td><td>Deborah Moran</td><td>425,149</td></tr>
+					<tr><td>32</td><td>Joel Byrum</td><td>425,149</td></tr>
+					<tr><td>33</td><td>Michael Machado</td><td>425,149</td></tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		
+		<div class="separator width"></div>
+		
+		<timeline belts="belts" start-date="startDate" end-date="endDate" last-belt-date="lastBeltDate"></timeline>
+	</div>
+</div>

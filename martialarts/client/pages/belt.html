@@ -1,0 +1,36 @@
+<style>
+.content h2:nth-child(1) {
+	margin-top: 0px;
+}
+.beltInfo {
+	margin: 0 20px;
+}
+</style>
+
+<div class="pageTitle">
+	<div class="titleBar" ng-style="{'background-color': leftBar}"></div>
+	<div class="titleText">{{beltName}}</div>
+	<div class="titleBar" ng-style="{'background-color': rightBar}"></div>
+</div>
+
+<div class="navContainer">
+	<div class="navMenu navItem button" ng-click="formNavShow = !formNavShow">School Menu</div>
+	<div class="navItem button" ng-class="{active: formNavShow}" ng-repeat="button in buttons" ng-click="navigate(button.url)">{{button.name}}</div>
+</div>
+
+<div class="contentContainer">
+	<div class="beltInfo">
+		<h2>Black Belt Philosophy</h2>
+		<p>{{philosophy}}</p>
+		
+		<h2>Belt Tip Requirements</h2>
+		<ol>
+			<li ng-repeat="requirement in tip">{{requirement.color}} - {{requirement.requirement}}</li>
+		</ol>
+		
+		<h2>Testing Requirements</h2>
+		<ul>
+			<li ng-repeat="requirement in testing">{{requirement}}</li>
+		</ul>
+	</div>
+</div>

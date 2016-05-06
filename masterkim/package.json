@@ -1,0 +1,14 @@
+{
+	"name": "MasterKim",
+	"version": "0.0.1",
+	"description": "Master Kim's Tae Kwon Do Website",
+	"main": "server.js",
+	"repository": "",
+	"author": "Brett van Beynum",
+	"dependencies": {
+		"express": "4.x"
+	},
+	"devDependencies": {
+		"flightplan": "^0.6.13"
+	}
+}
